@@ -1,10 +1,12 @@
 const urlWorks = "http://localhost:5678/api/works";
 const urlCategories = "http://localhost:5678/api/categories";
 
+let allWorks = [];
+
 async function getWorks() {
     const response = await fetch(urlWorks); 
-    const works = await response.json();    
-    displayWorks(works);                    
+    allWorks = await response.json();       
+    displayWorks(allWorks);                    
 }
 
 function displayWorks(works) {    
@@ -28,4 +30,39 @@ function displayWorks(works) {
     });
 }
 
+async function getCategories() {
+    const response =  await fetch (urlCategories)
+    const categories = await response.json()
+    displayFilters(categories)
+}
+
+function displayFilters(categories) {
+    const filtersContainer = document.querySelector(".filters");
+
+    const allButton = document.createElement("button");
+    allButton.innerText = "Tous";
+    allButton.classList.add("filter-btn");
+    filtersContainer.appendChild(allButton);
+
+    allButton.addEventListener("click", () => {
+        displayWorks(allWorks)    
+    });
+
+    categories.forEach((category) => {
+        const button = document.createElement("button");        
+        button.innerText = category.name; 
+        button.classList.add("filter-btn");
+
+        filtersContainer.appendChild(button);
+
+        button.addEventListener("click", () => {
+            const filteredWorks = allWorks.filter((work) => {
+                return work.categoryId === category.id; 
+            });
+            displayWorks(filteredWorks);    
+        });
+    }); 
+}
+
 getWorks();
+getCategories();
