@@ -186,3 +186,27 @@ footer nav ul {
 	margin: 2em
 }
 
+/* la barre noir du mode édition */
+
+.edit-mode-bar {
+    background-color: black;
+    color: white;
+    height: 59px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-mode-bar span {
+    margin-left: 10px;
+}
+
+/* Le bouton modifier */
+.edit-btn {
+    margin-left: 20px;
+    color: black;
+    text-decoration: none; 
+    font-size: 14px;
+    font-family: 'Work Sans', sans-serif; 
+}

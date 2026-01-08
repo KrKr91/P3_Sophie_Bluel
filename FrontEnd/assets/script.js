@@ -66,3 +66,47 @@ function displayFilters(categories) {
 
 getWorks();
 getCategories();
+
+
+// mode admin
+
+function checkAdminMode() {
+    
+    const token = localStorage.getItem("token");
+
+    if (token) {
+        
+        const loginLink = document.querySelector("nav ul li a[href='login.html']");
+        if (loginLink) {
+            loginLink.innerText = "logout";
+            loginLink.href = "#"; 
+            loginLink.addEventListener("click", () => {
+                localStorage.removeItem("token");
+                window.location.reload(); 
+            });
+        }
+
+        const body = document.querySelector("body");
+        const topBar = document.createElement("div");
+        topBar.classList.add("edit-mode-bar"); 
+        topBar.innerHTML = '<i class="fa-regular fa-pen-to-square"></i> <span>Mode édition</span>';
+        body.insertBefore(topBar, body.firstChild);
+
+        const projectTitle = document.querySelector("#portfolio h2"); 
+        
+        if (projectTitle) {
+            const editBtn = document.createElement("a");
+            editBtn.classList.add("edit-btn"); 
+            editBtn.innerHTML = '<i class="fa-regular fa-pen-to-square"></i> modifier';
+            editBtn.href = "#";
+            projectTitle.appendChild(editBtn); 
+        }
+
+        const filters = document.querySelector(".filters");
+        if (filters) {
+            filters.style.display = "none";
+        }
+    }
+}
+
+checkAdminMode();
