@@ -289,3 +289,100 @@ footer nav ul {
     font-size: 14px;
     text-decoration: none;
 }
+
+/* ajout photo */
+
+
+.modal-return {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.upload-container {
+    background-color: #E8F1F6;
+    height: 170px;
+    width: 100%;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden; 
+}
+
+.upload-container .icon-image {
+    font-size: 60px;
+    color: #B9C5CC;
+    margin-bottom: 10px;
+}
+
+.upload-container p {
+    font-size: 10px;
+    color: #444;
+    margin-top: 10px;
+}
+
+.btn-upload {
+    background-color: #CBD6DC;
+    color: #306685;
+    padding: 10px 33px;
+    border-radius: 50px;
+    font-family: 'Work Sans';
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#file {
+    display: none;
+}
+
+#preview-img {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+#add-photo-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+#add-photo-form label {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+#add-photo-form input[type="text"], 
+#add-photo-form select {
+    width: 100%;
+    height: 50px;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    margin-bottom: 20px;
+    padding-left: 10px;
+    box-sizing: border-box; 
+    background: white;
+}
+
+.btn-submit-photo {
+    font-family: 'Syne', sans-serif;
+    background-color: #A7A7A7; 
+    color: white;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 20px auto 0; 
+    display: block;
+    width: 237px;
+}
