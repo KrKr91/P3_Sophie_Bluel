@@ -47,18 +47,25 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
-body {
-	max-width: 1140px;
-	margin:auto;
+
+body {	
+	margin:0;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
     background-color: #fffef8; 
 }
+
+header, main, footer nav {
+    max-width: 1140px;     
+    margin: 0 auto;        
+    width: 100%;
+}
+
 header {
-	display: flex;
-	justify-content: space-between;
-    align-items: center;
-	margin: 50px 0
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;         
+    justify-content: space-between;
 }
 
 section {
@@ -285,17 +292,6 @@ footer nav ul {
     z-index: 1000; 
 }
 
-.modal-wrapper {
-    background-color: white;
-    width: 630px;
-    padding: 60px 100px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    box-sizing: border-box; 
-}
 
 .close-modal {
     position: absolute;
@@ -382,6 +378,18 @@ footer nav ul {
 
 /* ajout photo */
 
+.modal-wrapper {
+    background-color: white;
+    width: 630px;
+    padding: 60px 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box; 
+}
+
 .modal-return {
     position: absolute;
     top: 30px;
@@ -393,7 +401,7 @@ footer nav ul {
 .upload-container {
     background-color: #E8F1F6;
     height: 170px;
-    width: 100%;
+    width: 420px;
     border-radius: 3px;
     display: flex;
     flex-direction: column;
@@ -434,7 +442,7 @@ footer nav ul {
 #preview-img {
     position: absolute;
     height: 100%;
-    width: auto;
+    width: 100%;
     object-fit: contain;
 }
 

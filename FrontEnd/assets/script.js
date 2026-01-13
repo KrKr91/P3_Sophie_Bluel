@@ -325,4 +325,4 @@ function checkForm() {
 
 titleInput.addEventListener("input", checkForm);      
 categorySelect.addEventListener("change", checkForm); 
-imageInput.addEventListener("change", checkForm);     
+imageInput.addEventListener("change", checkForm);
