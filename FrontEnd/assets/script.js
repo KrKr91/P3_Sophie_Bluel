@@ -307,3 +307,22 @@ function resetForm() {
     pFile.style.display = "block";
     previewImg.src = "#";
 }
+
+// le bouton valider 
+
+const titleInput = document.getElementById("title");
+const categorySelect = document.getElementById("category");
+const imageInput = document.getElementById("file");
+const submitButton = document.querySelector(".btn-submit-photo");
+
+function checkForm() {
+    if (imageInput.files[0] && titleInput.value !== "" && categorySelect.value !== "") {
+        submitButton.classList.add("btn-valid");
+    } else {
+        submitButton.classList.remove("btn-valid");
+    }
+}
+
+titleInput.addEventListener("input", checkForm);      
+categorySelect.addEventListener("change", checkForm); 
+imageInput.addEventListener("change", checkForm);     
