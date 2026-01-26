@@ -16,14 +16,18 @@ function displayWorks(works) {
 
     works.forEach((work) => {
         const figure = document.createElement("figure");         
-        const img = document.createElement("img");               
+        const img = document.createElement("img");
+
         const figcaption = document.createElement("figcaption"); 
+        const div = document.createElement("div");
+        div.className = "preview-container";
 
         img.src = work.imageUrl;      
         img.alt = work.title;         
         figcaption.innerText = work.title; 
 
-        figure.appendChild(img);
+        div.appendChild(img);
+        figure.appendChild(div);
         figure.appendChild(figcaption);
 
         gallery.appendChild(figure);
@@ -157,7 +161,7 @@ async function generateModalGallery() {
         const img = document.createElement("img");
         img.src = work.imageUrl;
         img.alt = work.title;
-        
+
         const trashIcon = document.createElement("i");
         trashIcon.classList.add("fa-solid", "fa-trash-can");
         
@@ -168,7 +172,7 @@ async function generateModalGallery() {
                 deleteWork(work.id);
             }
         });
-        
+
         figure.appendChild(img);       
         figure.appendChild(trashIcon); 
         
