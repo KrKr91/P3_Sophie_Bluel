@@ -1,4 +1,4 @@
-const loginUrl = "http://localhost:5678/api/users/login";
+const loginUrl = "https://p3-sophie-bluel.onrender.com/api/users/login";
 
 const form = document.querySelector("form");
 

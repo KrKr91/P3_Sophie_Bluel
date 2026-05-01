@@ -1,5 +1,5 @@
-const urlWorks = "http://localhost:5678/api/works";
-const urlCategories = "http://localhost:5678/api/categories";
+const urlWorks = "https://p3-sophie-bluel.onrender.com/api/works";
+const urlCategories = "https://p3-sophie-bluel.onrender.com/api/categories";
 
 let allWorks = [];
 
