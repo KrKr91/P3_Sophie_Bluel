@@ -1,8 +1,11 @@
-const urlWorks = "https://p3-sophie-bluel.onrender.com/api/works";
-const urlCategories = "https://p3-sophie-bluel.onrender.com/api/categories";
+// --- CONSTANTES API (Mises à jour pour Render) ---
+const baseUrl = "https://p3-sophie-bluel.onrender.com";
+const urlWorks = `${baseUrl}/api/works`;
+const urlCategories = `${baseUrl}/api/categories`;
 
 let allWorks = [];
 
+// --- RÉCUPÉRATION ET AFFICHAGE DES TRAVAUX ---
 async function getWorks() {
     const response = await fetch(urlWorks); 
     allWorks = await response.json();       
@@ -11,7 +14,6 @@ async function getWorks() {
 
 function displayWorks(works) {    
     const gallery = document.querySelector(".gallery");
-    
     gallery.innerHTML = ""; 
 
     works.forEach((work) => {
@@ -22,7 +24,8 @@ function displayWorks(works) {
         const div = document.createElement("div");
         div.className = "preview-container";
 
-        img.src = work.imageUrl;      
+        // L'astuce pour remplacer localhost par l'URL Render
+        img.src = work.imageUrl.replace("http://localhost:5678", baseUrl);      
         img.alt = work.title;         
         figcaption.innerText = work.title; 
 
@@ -36,10 +39,11 @@ function displayWorks(works) {
 
 getWorks();
 
+// --- RÉCUPÉRATION ET AFFICHAGE DES CATÉGORIES ---
 async function getCategories() {
-    const response =  await fetch (urlCategories)
-    const categories = await response.json()
-    displayFilters(categories)
+    const response = await fetch(urlCategories);
+    const categories = await response.json();
+    displayFilters(categories);
 }
 
 function displayFilters(categories) {
@@ -51,7 +55,7 @@ function displayFilters(categories) {
     filtersContainer.appendChild(allButton);
 
     allButton.addEventListener("click", () => {
-        displayWorks(allWorks)    
+        displayWorks(allWorks);    
     });
 
     categories.forEach((category) => {
@@ -73,14 +77,11 @@ function displayFilters(categories) {
 getCategories();
 
 
-// mode admin
-
+// --- MODE ADMIN ---
 function checkAdminMode() {
-    
     const token = localStorage.getItem("token");
 
     if (token) {
-        
         const loginLink = document.querySelector("nav ul li a[href='login.html']");
         if (loginLink) {
             loginLink.innerText = "logout";
@@ -104,7 +105,7 @@ function checkAdminMode() {
             editBtn.classList.add("edit-btn"); 
             editBtn.innerHTML = '<i class="fa-regular fa-pen-to-square"></i> modifier';
             editBtn.href = "#";
-            editBtn.addEventListener ("click", openModal);
+            editBtn.addEventListener("click", openModal);
             projectTitle.appendChild(editBtn); 
         }
 
@@ -118,8 +119,7 @@ function checkAdminMode() {
 checkAdminMode();
 
 
-// modal
-
+// --- GESTION DE LA MODALE ---
 const modal = document.getElementById("modal");
 const modalGallery = document.querySelector(".modal-gallery");
 
@@ -148,18 +148,19 @@ modal.addEventListener("click", (e) => {
 });
 
 
-// la gallerie
-
+// --- GALERIE DE LA MODALE ---
 async function generateModalGallery() {
     modalGallery.innerHTML = ""; 
-    const response = await fetch("http://localhost:5678/api/works");
+    // Utilisation de la constante au lieu de localhost
+    const response = await fetch(urlWorks);
     const works = await response.json(); 
     
     works.forEach(work => {
         const figure = document.createElement("figure");
         
         const img = document.createElement("img");
-        img.src = work.imageUrl;
+        // L'astuce pour remplacer localhost ici aussi
+        img.src = work.imageUrl.replace("http://localhost:5678", baseUrl);
         img.alt = work.title;
 
         const trashIcon = document.createElement("i");
@@ -181,13 +182,13 @@ async function generateModalGallery() {
 }
 
 
-// supp une photo
-
+// --- SUPPRIMER UNE PHOTO ---
 async function deleteWork(id) {
     const token = localStorage.getItem("token");
 
     try {
-        const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+        // Utilisation de la constante avec l'ID
+        const response = await fetch(`${urlWorks}/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${token}` 
@@ -205,8 +206,7 @@ async function deleteWork(id) {
     }
 }
 
-// ajout photo
-
+// --- AJOUTER UNE PHOTO ---
 const btnAddPhoto = document.querySelector(".btn-add-photo");
 const modalStep1 = document.getElementById("modal-step-1");
 const modalStep2 = document.getElementById("modal-step-2");
@@ -251,7 +251,8 @@ fileInput.addEventListener("change", () => {
 
 async function loadCategories() {
     const select = document.getElementById("category");
-    const response = await fetch("http://localhost:5678/api/categories");
+    // Utilisation de la constante pour les catégories
+    const response = await fetch(urlCategories);
     const categories = await response.json();
     
     select.innerHTML = '<option value="" disabled selected></option>'; 
@@ -278,7 +279,8 @@ formAddPhoto.addEventListener("submit", async (e) => {
     const token = localStorage.getItem("token");
 
     try {
-        const response = await fetch("http://localhost:5678/api/works", {
+        // Utilisation de la constante pour envoyer le projet
+        const response = await fetch(urlWorks, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}` 
@@ -312,8 +314,7 @@ function resetForm() {
     previewImg.src = "#";
 }
 
-// le bouton valider 
-
+// --- BOUTON VALIDER ---
 const titleInput = document.getElementById("title");
 const categorySelect = document.getElementById("category");
 const imageInput = document.getElementById("file");
